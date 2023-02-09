@@ -1,0 +1,108 @@
+---
+params:
+  my_name: "a"
+  my_surname: "a"
+  my_address: "a"
+  my_position: "a"
+  my_mobile: "666666666"
+  my_phone: "666666666"
+  my_email: "a@a.a"
+  my_linkedin: "a-a-a"
+  my_github: "a"
+  my_data_location: "https://docs.google.com/spreadsheets/d/1KRBDSb8F8fOS9nQpcMOPTNqzA6FCjNxvLfWZsv0eunk/edit?usp=sharing"
+  my_profilepic: "prueba.png"
+  my_headcolor: "3B9DE1"
+name: "`r params$my_name`"
+surname: "`r params$my_surname`"
+date: "`r format(Sys.time(), '%B, %Y')`"
+qualifications:
+address: "`r params$my_address`"
+position: "`r params$my_position`"
+profilepic: "`r params$my_profilepic`"
+mobile: "`r params$my_mobile`"
+phone: "`r params$my_phone`"
+email: "`r params$my_email`"
+github:  "`r params$my_github`"
+linkedin: "`r params$my_linkedin`"
+#www: 
+#header-includes:
+#  - \setstretch{1.15}
+#  - \makecvfooter{}{"`r params$my_name`"}{}
+headcolor: "`r params$my_headcolor`"
+output: vitae::awesomecv
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+library(vitae)
+library(dplyr)
+library(magrittr)
+source("Utils/data_download_funs.R")
+
+CV <- create_CV_object(
+  data_location = params$my_data_location,  
+  pdf_mode = FALSE
+)
+```
+
+
+```{r, results='asis'}
+CV %<>% print_text_block("intro") 
+```
+
+# Formación Académica
+
+```{r}
+CV$entries_data %>% 
+  filter(section == 'education') %>% 
+  detailed_entries(
+    what = institution,
+    when = glue::glue("{`start`} - {`end`}"),
+    with = title,
+    where = loc,
+    why = description_bullets
+  )
+```
+
+
+# Cursos y certificaciones
+
+```{r}
+CV$entries_data %>% 
+  filter(section == 'courses') %>% 
+  detailed_entries(
+    what = institution,
+    when = glue::glue("{`start`}"),
+    with = title,
+    where = loc,
+    why = description_bullets
+  )
+```
+
+# Experiencia Laboral
+
+```{r}
+CV$entries_data %>% 
+  filter(section == 'industry_positions') %>% 
+  detailed_entries(
+    what = institution,
+    when = glue::glue("{`start`} - {`end`}"),
+    with = title,
+    where = loc,
+    why = description_bullets
+  )
+```
+
+
+# Habilidades
+
+```{r, results='asis'}
+CV %>% print_skill()
+```
+
+
+
+```{r}
+rm(CV)
+```
