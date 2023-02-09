@@ -1,5 +1,5 @@
 
-# CV3: Cómo crear tu CV con Rmarkdown, Awesome CV y Google Sheets
+# CV3: Currículum Vitae desde Google Sheets automático
 
 <!-- badges: start -->
 
