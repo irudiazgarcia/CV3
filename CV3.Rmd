@@ -25,9 +25,9 @@ email: "`r params$my_email`"
 github:  "`r params$my_github`"
 linkedin: "`r params$my_linkedin`"
 #www: 
-#header-includes:
+header-includes:
 #  - \setstretch{1.15}
-#  - \makecvfooter{}{"`r params$my_name`"}{}
+  - \makecvfooter{}{`r params$my_name` `r params$my_surname`}{}
 headcolor: "`r params$my_headcolor`"
 output: vitae::awesomecv
 ---
