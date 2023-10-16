@@ -9,9 +9,10 @@ params:
   my_email: "a@a.a"
   my_linkedin: "a-a-a"
   my_github: "a"
-  my_data_location: "https://docs.google.com/spreadsheets/d/1KRBDSb8F8fOS9nQpcMOPTNqzA6FCjNxvLfWZsv0eunk/edit?usp=sharing"
+  my_data_location: "https://docs.google.com/spreadsheets/d/1"
   my_profilepic: "prueba.png"
   my_headcolor: "3B9DE1"
+  my_fontsize: "11pt"
 name: "`r params$my_name`"
 surname: "`r params$my_surname`"
 date: "`r format(Sys.time(), '%B, %Y')`"
@@ -30,6 +31,7 @@ header-includes:
   - \makecvfooter{}{`r params$my_name` `r params$my_surname`}{}
 headcolor: "`r params$my_headcolor`"
 output: vitae::awesomecv
+fontsize: "`r params$my_fontsize`"
 ---
 
 
@@ -65,6 +67,19 @@ CV$entries_data %>%
   )
 ```
 
+# Experiencia Laboral
+
+```{r}
+CV$entries_data %>% 
+  filter(section == 'jobs') %>% 
+  detailed_entries(
+    what = institution,
+    when = glue::glue("{`start`} - {`end`}"),
+    with = title,
+    where = loc,
+    why = description_bullets
+  )
+```
 
 # Cursos y certificaciones
 
@@ -80,27 +95,24 @@ CV$entries_data %>%
   )
 ```
 
-# Experiencia Laboral
-
-```{r}
-CV$entries_data %>% 
-  filter(section == 'industry_positions') %>% 
-  detailed_entries(
-    what = institution,
-    when = glue::glue("{`start`} - {`end`}"),
-    with = title,
-    where = loc,
-    why = description_bullets
-  )
-```
-
-
 # Habilidades
 
 ```{r, results='asis'}
 CV %>% print_skill()
 ```
 
+# Publicaciones
+```{r}
+CV$entries_data %>% 
+  filter(section == 'publications') %>% 
+  detailed_entries(
+    what = institution,
+    when = glue::glue("{`start`}"),
+    with = title,
+#    where = loc,
+    why = description_bullets
+  )
+```
 
 
 ```{r}
