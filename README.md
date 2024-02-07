@@ -16,15 +16,11 @@ git clone https://github.com/irudiazgarcia/CV3.git
 Crea un documento de Google Sheet que siga la siguiente estructura: 
 https://docs.google.com/spreadsheets/d/1KRBDSb8F8fOS9nQpcMOPTNqzA6FCjNxvLfWZsv0eunk/edit?usp=sharing
 
-En el archivo main.R debes modificar el siguiente apartado, estableciendo el enlace de tu archivo de CV:
-
-``` r
-my_data_location = "https://docs.google.com/spreadsheets/d/1KRBDSb8F8fOS9nQpcMOPTNqzA6FCjNxvLfWZsv0eunk/edit?usp=sharing"
-```
-
 Adjunta en la carpeta la fotografía que deseas en tu CV, y recuerda establecer correctamente el nombre en tu archivo de Google Sheet.
 
-Finalmente, ¡ejecuta main.R y estará listo!
+Finalmente, ejecuta la aplicación contenida en main.R e indica la dirección URL del documento de Google Sheets.
+
+¡Y estará listo!
 
 # Cómo editar y/o añadir las entradas
 
