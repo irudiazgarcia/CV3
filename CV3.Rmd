@@ -19,7 +19,7 @@ date: "`r format(Sys.time(), '%B, %Y')`"
 qualifications:
 address: "`r params$my_address`"
 position: "`r params$my_position`"
-profilepic: "`r params$my_profilepic`"
+#profilepic: "`r params$my_profilepic`"
 mobile: "`r params$my_mobile`"
 phone: "`r params$my_phone`"
 email: "`r params$my_email`"
@@ -48,24 +48,14 @@ CV <- create_CV_object(
 )
 ```
 
+\vspace{2.0mm}
 
 ```{r, results='asis'}
 CV %<>% print_text_block("intro") 
 ```
 
-# Formación Académica
 
-```{r}
-CV$entries_data %>% 
-  filter(section == 'education') %>% 
-  detailed_entries(
-    what = institution,
-    when = glue::glue("{`start`} - {`end`}"),
-    with = title,
-    where = loc,
-    why = description_bullets
-  )
-```
+\vspace{2.0mm}
 
 # Experiencia Laboral
 
@@ -81,7 +71,25 @@ CV$entries_data %>%
   )
 ```
 
+
+# Formación Académica
+
+```{r}
+CV$entries_data %>% 
+  filter(section == 'education') %>% 
+  detailed_entries(
+    what = institution,
+    when = glue::glue("{`start`} - {`end`}"),
+    with = title,
+    where = loc,
+    why = description_bullets
+  )
+```
+
+
 # Cursos y certificaciones
+
+\setstretch{1.15}
 
 ```{r}
 CV$entries_data %>% 
